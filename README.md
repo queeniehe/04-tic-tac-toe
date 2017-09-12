@@ -60,7 +60,7 @@ for i in self_twos:                 # For each of these
 </details></br></br>
 
 
-With `./human_match.py`, you can play against the computer.  Alternatively, `./monkey_match.py` launches 10000 games against a random player.  The former will probably prove useful for debugging; the latter will 
+With `./human_match.py`, you can play against the computer.  Alternatively, `./monkey_match.py` launches 10000 games against a random player.  The former will probably prove useful for debugging; the latter will serve for your grade.
 
 <img src="img/monkey_computer.jpg" width=600px>
 Game on!
