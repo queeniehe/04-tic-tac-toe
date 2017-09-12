@@ -18,9 +18,9 @@ You will find a `game` class, as well as three `player` classes.  The former inc
 
 The `player` class is inherited by `monkey`, `human`, and `computer`.  Each of these players can can do two things -- be initialized to play X's or O's, and render a move when presented with a board.
 
-<img src="img/board.png" width=150px>
+<img src="img/board.png" width=125px>
 
-You will implement the computer's [**move()**](t3.py#L91) function.  This is part of a class (woohoo!), but all of your work should be restricted to that single function.  I suggest that you implement the strategy from the Newell & Simon strategy from the [Wikipedia page](https://en.wikipedia.org/wiki/Tic-tac-toe#Strategy) on tic-tac-to.  Though your computer will start all its matches in the center (boring), this is a self-consistent strategy that will never lose.  You can use other strategies if you want, but TAs will issue partial credit for the following defined strategies.
+You will implement the computer's [**move()**](t3.py#L91) function.  This is part of a class (woohoo!), but all of your work should be restricted to that single function.  I suggest that you implement the strategy from the Newell & Simon strategy from the [Wikipedia page](https://en.wikipedia.org/wiki/Tic-tac-toe#Strategy).  Though your computer will start all its matches in the center (boring!), this is a self-consistent strategy that will never lose.  You can use other strategies if you want, but TAs will issue partial credit for the following defined strategies.
 
 1. Win if possible
 2. Block your opponent from winning.
@@ -32,7 +32,7 @@ You will implement the computer's [**move()**](t3.py#L91) function.  This is par
 8. Take an empty corner.
 9. Take a side.
 
-A skeleton for this approach is defined at [**t3.py#L91**](t3.py#L91).  Fortunately for you, `game` already implements `check_for_wins()` and `check_for_twos()`, which should prove useful to you in evaluating the conditions.
+A skeleton for this approach is already [defined for you](t3.py#L91).  Further, `game` already implements `check_for_wins()` and `check_for_twos()`, which should prove useful to you in evaluating the conditions.
 
 Of these strategies, #4 may be particularly difficult.  You can see code for it below, if you get stuck.
 &nbsp;<details><summary>Strategy for #4, "Force Defense"</summary>
