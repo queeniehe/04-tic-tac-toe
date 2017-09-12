@@ -4,17 +4,21 @@ Tic Tac Toe -- child's play, right?  You probably know that perfectly played gam
 
 You will play against a random player -- a "monkey."  Let's call him Harry.  Since Harry plays randomly, you will beat him most of the time.  But here's the thing: he's going to pull a lot of antics things you might not expect, and you can _never_ lose.  You will each start about half the matches.
 
-You may work in pairs for this 
+You may work in pairs for this assignment.  So we know whom to credit, both of your names should be at the top of `t3.py` (replacing mine).
 
 ## Your Task
 
 In this repository, you will find `t3.py`, `human_match.py`, and `monkey_match.py`.
 
-Check out the documentation by doing `pydoc t3` from the command line.  In `t3.py`, you will find, a `player` class that is inherited by a `monkey`, a `human`, and a `computer`.
+Running `./human_match.py` starts an interactive match against the computer, while `./monkey_match.py` launches 10000 games between the computer a random player (monkey).  The former will probably prove useful for debugging; the latter will serve for your grade.  After your initial check-out, computer will play randomly -- just like the monkey.
 
-The file also includes the `game` class, which includes a board and defines the game play.  The board is defined as a list 9 elements long that initially consists of copies of `None` and is filled in with X's and O's with each move.  The indexing runs across rows and then down columns, as shown.  If you print the game, it will convert the board to string, and should be readily comprehensible.  The `game` also takes care of switching back and forth between the two players, rejecting invalid moves (filled squares), and ultimately declaring a winner.  
+The classes you will maniuplate are in `t3.py`.  Check out the documentation by doing `pydoc t3` from the command line.
 
-<img src="img/board.png" width=200px>
+You will find a `game` class, as well as three `player` classes.  The former includes a board and defines the game play.  The board is defined as a list 9 elements long that initially consists of copies of `None` and is filled in with X's and O's with each move.  The indexing runs across rows and then down columns, as shown.  If you print the game, it will convert the board to string, and should be readily comprehensible.  The `game` also takes care of switching back and forth between the two players, eliciting moves from each, rejecting invalid moves (filled squares), and ultimately declaring a winner.  
+
+The `player` class is inherited by `monkey`, `human`, and `computer`.  Each of these players can can do two things -- be initialized to play X's or O's, and render a move when presented with a board.
+
+<img src="img/board.png" width=150px>
 
 You will implement the computer's `move()` function.  Note that this is part of a class (woohoo!), but all of your work should be oconfided to the function.  I suggest that you implement the strategy from the Newell & Simon strategy from the Wikipedia page on Tic-Tac-Toe (listed 1-8, [here](https://en.wikipedia.org/wiki/Tic-tac-toe#Strategy)). 
 
@@ -59,10 +63,11 @@ for i in self_twos:                 # For each of these
     # Otherwise, it meets the condition.  Do it!!
     return i
 ```
-</details></br></br>
-
-
-With `./human_match.py`, you can play against the computer.  Alternatively, `./monkey_match.py` launches 10000 games against a random player.  The former will probably prove useful for debugging; the latter will serve for your grade.
+</details></br>
 
 <img src="img/monkey_computer.jpg" width=600px>
-Game on!
+
+**Game on!**
+
+
+## Don't forget to commit, and check your work!
