@@ -12,7 +12,9 @@ In this repository, you will find `t3.py`, `human_match.py`, and `monkey_match.p
 
 Check out the documentation by doing `pydoc t3` from the command line.  In `t3.py`, you will find, a `player` class that is inherited by a `monkey`, a `human`, and a `computer`.
 
-The file also includes the `game` class, which includes a board and defines the game play.  The board is defined as a list 9 elements long that initially consists of copies of `None` and is filled in with X's and O's with each move.  If you print the game, it will convert the board to string, and should be readily comprehensible.  The `game` also takes care of switching back and forth between the two players, rejecting invalid moves (filled squares), and ultimately declaring a winner.  
+The file also includes the `game` class, which includes a board and defines the game play.  The board is defined as a list 9 elements long that initially consists of copies of `None` and is filled in with X's and O's with each move.  The indexing runs across rows and then down columns, as shown.  If you print the game, it will convert the board to string, and should be readily comprehensible.  The `game` also takes care of switching back and forth between the two players, rejecting invalid moves (filled squares), and ultimately declaring a winner.  
+
+<img src="img/board.png" width=200px>
 
 You will implement the computer's `move()` function.  Note that this is part of a class (woohoo!), but all of your work should be oconfided to the function.  I suggest that you implement the strategy from the Newell & Simon strategy from the Wikipedia page on Tic-Tac-Toe (listed 1-8, [here](https://en.wikipedia.org/wiki/Tic-tac-toe#Strategy)). 
 
