@@ -20,7 +20,7 @@ The `player` class is inherited by `monkey`, `human`, and `computer`.  Each of t
 
 <img src="img/board.png" width=150px>
 
-You will implement the computer's [**move()**](t3.py#L91) function.  This is part of a class (woohoo!), but all of your work should be restricted to that single function.  I suggest that you implement the strategy from the Newell & Simon strategy from the Wikipedia page on Tic-Tac-Toe (listed 1-8, [here](https://en.wikipedia.org/wiki/Tic-tac-toe#Strategy)). 
+You will implement the computer's [**move()**](t3.py#L91) function.  This is part of a class (woohoo!), but all of your work should be restricted to that single function.  I suggest that you implement the strategy from the Newell & Simon strategy from the [Wikipedia page](https://en.wikipedia.org/wiki/Tic-tac-toe#Strategy) on tic-tac-toe
 
 1. Win if possible
 2. Block your opponent from winning.
