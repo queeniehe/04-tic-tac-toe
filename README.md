@@ -49,7 +49,7 @@ self_twos = match.check_for_twos(self.mark)
 # We'll now consider hypothetical games, 
 # where we play in each of the "two" positions.
 for i in self_twos:                 # For each of these
-    hypo_match = dc(match)          # create a copy of the game.
+    hypo_match = dc(match)          # create a copy of the game -- dc is deepcopy
     hypo_match.board[i] = self.mark # try playing there.
     
     # Now look for the win implied by your "two".
