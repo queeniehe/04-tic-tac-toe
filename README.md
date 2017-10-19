@@ -6,7 +6,7 @@ You will play against a random player -- a "monkey."  Let's call him Harry.  Sin
 
 You may work in pairs for this assignment.  So we know whom to credit, both of your names should be at the top of `t3.py` (replacing mine).
 
-The assignment is due Wednesday October 25th at 1:30am.
+The assignment is due Wednesday October 25th at 1:30am.  You can check it out [here](https://classroom.github.com/assignment-invitations/829adc8487082580d8510e309105e51b).
 
 <img src="img/monkey_computer.jpg" width=600px>
 <b>Your noble adversary.</b>
