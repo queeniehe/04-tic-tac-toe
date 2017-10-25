@@ -87,35 +87,66 @@ class computer(player):
   """
   This is the class to be specialized by students.
   """
-
   def move(self, match):
-    """
-    This is your specialization.
-    I would suggest that you follow the strategy of N&S (wiki)
-    https://en.wikipedia.org/wiki/Tic-tac-toe#Strategy
-    but so long as you don't lose to monkeys, you can do what you want.
-    """
 
-    #1# Win if possible.
-
+ #1# Win if possible.
+    if match.check_for_wins(self.mark) is not None:
+      return match.check_for_wins(self.mark)
     #2# Block wins, if possible.
-
+    if match.check_for_wins(self.other_mark) is not None:
+      return match.check_for_wins(self.other_mark)
     #3# Fork.
-
+    twos_X = match.check_for_twos(self.mark)
+    twos_O = match.check_for_twos(self.other_mark)
+    for key, value in twos_X.items():
+      if value == 2:
+        return key
     #4# Force Defense.
+    # Get posible squares to play for a "two"
+    self_twos = match.check_for_twos(self.mark)
+   # We'll now consider hypothetical games,
+   # where we play in each of the "two" positions.
+    for i in self_twos:                 # For each of these
+      hypo_match = dc(match)          # create a copy of the game -- dc is deepcopy
+      hypo_match.board[i] = self.mark # try playing there.
 
+    # Now look for the win implied by your "two".
+    # Your opponent would have to play here.
+      w = hypo_match.check_for_wins(self.mark)
+
+    # For your OPPPONENT, get any potential twos.
+      hypo_twos = hypo_match.check_for_twos(self.other_mark)
+
+    # If your potential win is not just a two for them,
+    # but in fact a DOUBLE two -- a fork -- don't move here!
+      if w in hypo_twos and hypo_twos[w] > 1: continue
+
+    # Otherwise, it meets the condition.  Do it!!
+      return i
     #5# Block a fork.
-
+    for key, value in twos_O.items():
+      if value == 2:
+        return key
     #6# Center.
-
+    if match.check_move(4):
+      return 4
     #7# Opposite corner.
-
+    if match.board[0] == self.other_mark:
+      return 8
+    elif match.board[2] == self.other_mark:
+      return 6
+    elif match.board[6] == self.other_mark:
+      return 2
+    elif match.board[8] == self.other_mark:
+      return 0
     #8# Empty corner.
-
+    for i in [0,2,4,8]:
+      if match.check_move(i):
+        return i
     #9# Side
-
-    return random.choice([i for i in range(9) if not match.board[i]])
-
+    for i in [1,3,5,7]:
+      if match.check_move(i):
+        return i
 
 
 class game():
