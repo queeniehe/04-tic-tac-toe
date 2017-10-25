@@ -11,9 +11,14 @@ With a game start with X0 O8, X could play at X1 and lose.
 
 However, since the game begins with X4, it's self-consistent.
 """
-__author__    = "Both of Your, Team Members"
-__copyright__ = "Copyright 2017 You Again"
-__email__     = "andeven emails"
+__author__    = "Xiaokun (Queenie) He"
+__copyright__ = "Copyright 2017 Xiaokun He"
+__email__     = "xhe3@uchicago.edu"
+
+import sys
+import random
+from copy import deepcopy as dc
+
 
 import sys
 import random
@@ -59,7 +64,7 @@ class monkey(player):
 
     self.mark = mark
     self.other_mark = "XO"[mark == "X"]
-  
+
   pass
 
 
@@ -87,41 +92,71 @@ class computer(player):
   """
   This is the class to be specialized by students.
   """
-
   def move(self, match):
-    """
-    This is your specialization.
-    I would suggest that you follow the strategy of N&S (wiki)
-    https://en.wikipedia.org/wiki/Tic-tac-toe#Strategy
-    but so long as you don't lose to monkeys, you can do what you want.
-    """
 
-    #1# Win if possible.
-
+ #1# Win if possible.
+    if match.check_for_wins(self.mark) is not None:
+      return match.check_for_wins(self.mark)
     #2# Block wins, if possible.
-
+    if match.check_for_wins(self.other_mark) is not None:
+      return match.check_for_wins(self.other_mark)
     #3# Fork.
-
+    twos_X = match.check_for_twos(self.mark)
+    twos_O = match.check_for_twos(self.other_mark)
+    for key, value in twos_X.items():
+      if value == 2:
+        return key
     #4# Force Defense.
+    # Get posible squares to play for a "two"
+    self_twos = match.check_for_twos(self.mark)
+   # We'll now consider hypothetical games,
+   # where we play in each of the "two" positions.
+    for i in self_twos:                 # For each of these
+      hypo_match = dc(match)          # create a copy of the game -- dc is deepcopy
+      hypo_match.board[i] = self.mark # try playing there.
 
+    # Now look for the win implied by your "two".
+    # Your opponent would have to play here.
+      w = hypo_match.check_for_wins(self.mark)
+
+    # For your OPPPONENT, get any potential twos.
+      hypo_twos = hypo_match.check_for_twos(self.other_mark)
+
+    # If your potential win is not just a two for them,
+    # but in fact a DOUBLE two -- a fork -- don't move here!
+      if w in hypo_twos and hypo_twos[w] > 1: continue
+
+    # Otherwise, it meets the condition.  Do it!!
+      return i
     #5# Block a fork.
-
+    for key, value in twos_O.items():
+      if value == 2:
+        return key
     #6# Center.
-
+    if match.check_move(4):
+      return 4
     #7# Opposite corner.
-
+    if match.board[0] == self.other_mark:
+      return 8
+    elif match.board[2] == self.other_mark:
+      return 6
+    elif match.board[6] == self.other_mark:
+      return 2
+    elif match.board[8] == self.other_mark:
+      return 0
     #8# Empty corner.
-
+    for i in [0,2,4,8]:
+      if match.check_move(i):
+        return i
     #9# Side
-
-    return random.choice([i for i in range(9) if not match.board[i]])
-
-
+    for i in [1,3,5,7]:
+      if match.check_move(i):
+        return i
 
 class game():
   """
   game contains two players -- humans, monkeys, or computers --
-  who then play in a loop.  
+  who then play in a loop.
   """
 
   mini_num = "012345678"
@@ -134,7 +169,7 @@ class game():
     """
     Create a new game.
 
-    :parame hmark: the marker for the human player 
+    :parame hmark: the marker for the human player
     :parame c1:    the class of computer 1, by default a monkey (random)
     :parame c2:    the class of computer 2, by default a monkey (random)
     """
@@ -162,15 +197,15 @@ class game():
 
 
   def __str__(self):
-    
+
     s = ""
     for n in range(9):
 
       if not (n%3): s += "\n"
 
       if self.board[n]:
-        s += self.board[n] 
-      else: s += game.mini_num[n] 
+        s += self.board[n]
+      else: s += game.mini_num[n]
       s += " "
 
     s += "\n"
@@ -181,7 +216,7 @@ class game():
   def play(self):
     """
     play is just a (max) 9 iteration loop
-    between the two players defined, 
+    between the two players defined,
     which returns the winning player (or None).
     """
 
@@ -205,7 +240,7 @@ class game():
       if self.moves == 9: print("It is a draw.")
 
     return winner
-    
+
 
   def check_move(self, move):
     """
@@ -215,7 +250,6 @@ class game():
     :param move: proposed move
     :return: boolean True if move is legal, otherwise False.
     """
-    
     if type(move) != int or \
        move > 8 or move < 0:
       print("I require an integer, 0-8!")
@@ -244,7 +278,7 @@ class game():
       for three in game.threes:
         if all(self.board[sq] == m for sq in three):
           return m
-      
+
     # Return the winner.  Game will end.
     return ""
 
@@ -256,9 +290,9 @@ class game():
     """
 
     for three in game.threes:
-      if sum(self.board[cell] == mark for cell in three) == 2: 
+      if sum(self.board[cell] == mark for cell in three) == 2:
         for cell in three:
-          if self.board[cell] == None: 
+          if self.board[cell] == None:
             return cell
 
     return None
@@ -280,5 +314,3 @@ class game():
             else: twos[cell] = 1
 
     return twos
-
-
